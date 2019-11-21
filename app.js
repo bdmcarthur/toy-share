@@ -19,7 +19,7 @@ const bodyParser = require("body-parser");
 
 //Routers
 const indexRouter = require("./routes/index");
-const authenticationRouter = require("./routes/authentications/authentication");
+const authenticationRouter = require("./routes/authentication");
 const placesRouter = require("./routes/places");
 const userRouter = require("./routes/user");
 

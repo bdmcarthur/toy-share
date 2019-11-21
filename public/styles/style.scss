@@ -1,19 +1,15 @@
 $font-sans: "Cormorant Garamond", serif;
-$primary: #161515;
-$secondary: #050505;
+$primary: #e9e500;
+$secondary: #00e3eb;
 $border-radius: 1.5rem;
 $font-size-base: 1.75rem;
-$light: #f8f9fad1;
+$light: white;
 @import "../../node_modules/bootstrap/scss/bootstrap.scss";
 
 body {
   margin: 0;
-  font-family: "Advent Pro", sans-serif;
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-image: url("/images/background.jpg");
+  font-family: "Poppins", sans-serif;
   height: 100vh;
-  background-color: black;
 }
 
 // a {
@@ -22,7 +18,7 @@ body {
 
 h1,
 .navbar {
-  font-family: "Amatic SC", cursive;
+  font-family: "Luckiest Guy", cursive;
 }
 
 .logo {
@@ -31,14 +27,17 @@ h1,
 
 .title-text {
   font-size: 11rem;
-  color: black;
-  text-shadow: rgb(250, 250, 250) 3px 0px 18px;
+  text-shadow: 7px 0px 15px #0176c0, 0 0 1em #ede1e1, 0 0 0.2em #00c4ff;
+}
+
+.sub-text {
+  text-shadow: 7px 0px 15px #0061eb, 0 0 1em #4fc5ff, 0 0 0.2em #056ff1;
 }
 
 .myButton {
   box-shadow: 0px 0px 7px 1px #d7d0d0;
-  background: linear-gradient(to bottom, #1a1a1a 5%, #201f20 100%);
-  background-color: #424142;
+  background: linear-gradient(to bottom, #c80404 5%, #db2f40 100%);
+  background-color: #ed0808;
   border-radius: 26px;
   border: 1px solid #6e686e;
   display: inline-block;
@@ -49,7 +48,7 @@ h1,
   text-shadow: 0px 1px 14px #525252;
 }
 .myButton:hover {
-  background: linear-gradient(to bottom, #242324 5%, #424142 100%);
+  background: linear-gradient(to bottom, #a30202 5%, #a01d2a 100%);
   background-color: #696369;
   color: white;
   text-decoration: none;
@@ -65,6 +64,10 @@ h1,
 
 .title-home {
   padding-top: 20px;
+}
+
+.navbar .text-white {
+  text-shadow: 2px 2px 2px #32426e;
 }
 
 #map {
@@ -99,11 +102,6 @@ h1,
   height: 500px;
   overflow: hidden;
   margin: 0 auto;
-}
-
-.sub-text {
-  color: black;
-  text-shadow: 1px 1px 2px #6c6565, 0 0 1em white, 0 0 0.2em white;
 }
 
 .placeName {
