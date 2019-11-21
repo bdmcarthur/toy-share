@@ -23,7 +23,8 @@ const ToysSchema = new mongoose.Schema({
     required: true
   },
   category: {
-    type: String
+    type: String,
+    required: true
   },
   addedBy: {
     type: String,
