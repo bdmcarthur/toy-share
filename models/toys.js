@@ -34,7 +34,8 @@ const ToysSchema = new mongoose.Schema({
     {
       email: String,
       title: String,
-      comment: String
+      comment: String,
+      _postedBy: { type: mongoose.Schema.Types.ObjectId, ref: "User" }
     }
   ]
 });

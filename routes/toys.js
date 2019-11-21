@@ -28,15 +28,16 @@ router.post("/addtoy", uploadCloud.single("file"), (req, res, next) => {
   let category = req.body.category;
   let description = req.body.description;
   let image = req.file.url;
-  toys.create({
-    name: name,
-    time: today.getHours() + ":" + today.getMinutes(),
-    addedBy: req.user.email,
-    location: location,
-    category: category,
-    description: description,
-    image: req.file.url
-  })
+  toys
+    .create({
+      name: name,
+      time: today.getHours() + ":" + today.getMinutes(),
+      addedBy: req.user.email,
+      location: location,
+      category: category,
+      description: description,
+      image: req.file.url
+    })
     .then(toy => {
       res.redirect("/home");
       console.log("The toy is saved and its value is: ", toy);
@@ -47,7 +48,8 @@ router.post("/addtoy", uploadCloud.single("file"), (req, res, next) => {
 });
 
 router.get("/edit/:id", routeGuardMiddleware, (req, res, next) => {
-  toys.findOne({ _id: req.params.id })
+  toys
+    .findOne({ _id: req.params.id })
     .then(toy => {
       res.render("edit", { toy });
     })
@@ -60,10 +62,8 @@ router.post("/edit/:id", routeGuardMiddleware, (req, res, next) => {
   const name = req.body.name;
   const category = req.body.category;
   const description = req.body.description;
-  toys.update(
-    { _id: req.params.id },
-    { $set: { name, category, description } }
-  )
+  toys
+    .update({ _id: req.params.id }, { $set: { name, category, description } })
     .then(toy => {
       res.redirect("/profile/" + req.user._id);
     })
@@ -73,7 +73,8 @@ router.post("/edit/:id", routeGuardMiddleware, (req, res, next) => {
 });
 
 router.get("/delete/:id", routeGuardMiddleware, (req, res, next) => {
-  toys.deleteOne({ _id: req.params.id })
+  toys
+    .deleteOne({ _id: req.params.id })
     .then(toy => {
       res.redirect("/profile/" + req.user._id);
     })
@@ -84,24 +85,49 @@ router.get("/delete/:id", routeGuardMiddleware, (req, res, next) => {
 
 router.get("/toyDetail/:id", (req, res, next) => {
   const id = req.params.id;
-  toys.findById(id)
+  // console.log(toy.reviews[2]._postedBy);
+  toys
+    .findById(id)
+    .populate({
+      path: "reviews._postedBy"
+    })
     .then(toy => {
+      console.log(toy);
+      console.log(toy.reviews[0]);
       res.render("toy-detail", { toy });
     })
     .catch(error => {
       console.log(error);
     });
+
+  // Promise.all([
+  //   User.findById(req.user._id).populate("_favorites"),
+  //   toys.find({ addedBy: req.user.email })
+  // ])
+  //   .then(([user, toys]) => {
+  //     const data = {
+  //       toys: toys,
+  //       favorites: user._favorites
+  //     };
+  //     res.render("profile", data);
+  //   })
+  //   .catch(error => {
+  //     console.log("Got an error updating", error);
+  //   });
 });
 
 router.post("/add-comment/:id", routeGuardMiddleware, (req, res, next) => {
   const id = req.params.id;
   const newReview = {
     title: req.body.title,
-    comment: req.body.comment
+    comment: req.body.comment,
+    _postedBy: req.user._id
   };
-  toys.findByIdAndUpdate(id, {
-    $push: { reviews: newReview }
-  })
+
+  toys
+    .findByIdAndUpdate(id, {
+      $push: { reviews: newReview }
+    })
     .then(toy => {
       res.redirect("/toyDetail/" + toy._id);
     })
