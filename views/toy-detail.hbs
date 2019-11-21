@@ -1,19 +1,19 @@
 <div class="bg-light mx-auto rounded pb-4">
-  <form action="/addFavorite/{{place._id}}" method="POST">
+  <form action="/addFavorite/{{toy._id}}" method="POST">
     <button class="favButton" type='submit'><i class="fas fa-heart"></i></button>
   </form>
   
-  <h1 class='mb-4 text-center placeName font-weight-bold'>{{place.name}}</h1>
+  <h1 class='mb-4 text-center toyName font-weight-bold'>{{toy.name}}</h1>
   <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
   <div class="carousel-inner">
     <div class="carousel-item active">
-      <img class="d-block w-50 mx-auto" src="{{place.image}}" alt="First slide">
+      <img class="d-block w-50 mx-auto" src="{{toy.image}}" alt="First slide">
     </div>
     <div class="carousel-item">
-      <img class="d-block w-50 mx-auto" src="{{place.image}}" alt="Second slide">
+      <img class="d-block w-50 mx-auto" src="{{toy.image}}" alt="Second slide">
     </div>
     <div class="carousel-item">
-      <img class="d-block w-50 mx-auto" src="{{place.image}}" alt="Third slide">
+      <img class="d-block w-50 mx-auto" src="{{toy.image}}" alt="Third slide">
     </div>
   </div>
   <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
@@ -27,11 +27,11 @@
 </div>
 
   <div class='container px-5'>
-    <p class="description my-2 pb-3 text-center">{{place.description}}</p>
+    <p class="description my-2 pb-3 text-center">{{toy.description}}</p>
   </div>
 </div>
 <p class=" my-4 font-weight-bold border-secondary ">Comments</p>
-{{#each place.reviews}}
+{{#each toy.reviews}}
   <div class="card my-3">
     <div class="card-body">
       <h5 class="card-title">{{this.title}}</h5>
@@ -42,7 +42,7 @@
 
 <div class="my-3 pt-3 border-secondary border-top">
   <p class="mb-3 font-weight-bold">Add A Comment</p>
-<form action="/add-comment/{{place._id}}" method="post">
+<form action="/add-comment/{{toy._id}}" method="post">
    <div class="form-group">
     <label class="" for="title">Title:</label>
     <input type="text" class="form-control" name="title" id="description">

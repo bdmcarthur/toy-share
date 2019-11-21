@@ -2,7 +2,7 @@
 
 require('dotenv').config();
 
-const debug = require('debug')('secret-places:server');
+const debug = require('debug')('secret-toys:server');
 const app = require('./../app');
 const database = require('./database');
 

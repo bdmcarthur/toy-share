@@ -2,7 +2,7 @@
 
 const mongoose = require("mongoose");
 
-const placesSchema = new mongoose.Schema({
+const ToysSchema = new mongoose.Schema({
   name: {
     type: String,
     required: true
@@ -38,6 +38,6 @@ const placesSchema = new mongoose.Schema({
   ]
 });
 
-const Places = mongoose.model("Places", placesSchema);
+const Toy = mongoose.model("Toy", ToysSchema);
 
-module.exports = Places;
+module.exports = Toy;

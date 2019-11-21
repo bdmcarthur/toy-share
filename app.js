@@ -20,7 +20,7 @@ const bodyParser = require("body-parser");
 //Routers
 const indexRouter = require("./routes/index");
 const authenticationRouter = require("./routes/authentication");
-const placesRouter = require("./routes/places");
+const toysRouter = require("./routes/toys");
 const userRouter = require("./routes/user");
 
 const app = express();
@@ -130,7 +130,7 @@ app.use((req, res, next) => {
 //Routers
 app.use("/", indexRouter);
 app.use("/", authenticationRouter);
-app.use("/", placesRouter);
+app.use("/", toysRouter);
 app.use("/", userRouter);
 
 const routeGuardMiddleware = require("./controllers/route-guard-middleware");

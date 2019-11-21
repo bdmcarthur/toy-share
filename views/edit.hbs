@@ -1,6 +1,6 @@
 <h1 class="my-4 text-white">Edit</h1>
 <button type="button" id='locationButton'>Get Current Location <span class="spinner-border spinner-border-sm hidden" id="loading" role="status" aria-hidden="true"></span></button>
-   <form method="POST" action="/edit/{{place._id}}">
+   <form method="POST" action="/edit/{{toy._id}}">
    <div class="form-group location-hide">
     <label for="location" class="hidden">Location:</label>
     <input id="location-input" class="form-control hidden " type="text" name="location">
@@ -15,11 +15,11 @@
   </div>
   <div class="form-group">
     <label for="name">Name</label>
-    <input type="text" class="form-control" id="exampleFormControlInput1" name="name" value="{{place.name}}">
+    <input type="text" class="form-control" id="exampleFormControlInput1" name="name" value="{{toy.name}}">
   </div>
   <div class="form-group">
     <label for="description">Description:</label>
-    <textarea class="form-control" id="description"  name="description" rows="3">{{place.description}}</textarea>
+    <textarea class="form-control" id="description"  name="description" rows="3">{{toy.description}}</textarea>
   </div>
    <div class="form-group">
     <input type="file" name="file">

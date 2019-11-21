@@ -1,11 +1,11 @@
 {
-  "name": "secret-places",
+  "name": "toy",
   "version": "0.1.0",
   "private": true,
   "scripts": {
     "start": "node ./server",
     "dev": "nodemon ./server",
-    "dev:debug": "DEBUG=secret-places* npm run dev",
+    "dev:debug": "DEBUG=toy* npm run dev",
     "lint": "eslint ."
   },
   "dependencies": {

@@ -2,10 +2,10 @@
  
 <button type="button" class="myButton" id='locationButton'>Get Current Location <span class="spinner-border spinner-border-sm hidden" id="loading" role="status" aria-hidden="true"></span></button>
 
-<form method="POST" action="/addPlace" enctype="multipart/form-data">
+<form method="POST" action="/addtoy" enctype="multipart/form-data">
    <div class="form-group location-hide">
     <label class="hidden" for="location">Location:</label>
-    <input id="location-input" class="form-control hidden" type="text" name="location" placeholder="Location">
+    <input id="location-input" class="form-control hidden" type="text" name="location" toyholder="Location">
     </div>
     {{!-- <div class="form-group">
     <select class="form-control" id="category" name="category">
@@ -17,7 +17,7 @@
   </div> --}}
   <div class="form-group">
     <label for="name">Name</label>
-    <input type="text" class="form-control" id="exampleFormControlInput1" name="name" placeholder="Place Name">
+    <input type="text" class="form-control" id="exampleFormControlInput1" name="name" toyholder="toy Name">
   </div>
   <div class="form-group">
     <label for="description">Description:</label>

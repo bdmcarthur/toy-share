@@ -15,32 +15,32 @@ for (let i = 0; i < filter.length; i++) {
     clearMarkers();
     markers = [];
     mapMarker = [];
-    getPlaces(result);
+    gettoys(result);
   });
 }
 
 // Gets Markers from Database
-function getPlaces(result) {
+function gettoys(result) {
   axios
-    .get("/places")
+    .get("/toys")
     .then(res => {
-      let placesArr = res.data.places;
+      let toysArr = res.data.toys;
       if (!result) {
-        for (let place of placesArr) {
-          markers.push(place);
+        for (let toy of toysArr) {
+          markers.push(toy);
         }
-        placePlaces(markers);
+        toytoys(markers);
       } else {
-        placesArr.filter(place => {
+        toysArr.filter(toy => {
           if (
-            place.category
+            toy.category
               .toLowerCase()
               .split(" ")
               .join("") === result
           )
-            markers.push(place);
+            markers.push(toy);
         });
-        placePlaces();
+        toytoys();
       }
     })
     .catch(error => {
@@ -70,9 +70,9 @@ function setMapOnAll(map) {
   }
 }
 
-function placePlaces() {
-  markers.forEach(function(place) {
-    const splitLoc = place.location.split(",");
+function toytoys() {
+  markers.forEach(function(toy) {
+    const splitLoc = toy.location.split(",");
     const center = {
       lat: parseFloat(splitLoc[0]),
       lng: parseFloat(splitLoc[1])
@@ -80,7 +80,7 @@ function placePlaces() {
     const marker = new google.maps.Marker({
       position: center,
       map: map,
-      label: { text: place.name, color: "white" },
+      label: { text: toy.name, color: "white" },
       icon: {
         scaledSize: new google.maps.Size(30, 50),
         labelOrigin: new google.maps.Point(16, 55),
@@ -89,29 +89,29 @@ function placePlaces() {
     });
     mapMarker.push(marker);
   });
-  displayPlaces();
+  displaytoys();
 }
 
-function displayPlaces() {
+function displaytoys() {
   container.innerHTML = "";
-  for (let place of markers) {
+  for (let toy of markers) {
     container.innerHTML += `
     <div class="col-sm-4 my-4">
-      <div class="card h-100 place-info shadow-lg">
+      <div class="card h-100 toy-info shadow-lg">
         <div class="card-body">
-          <img class='placeImg card-img-top mb-3' src="${
-            place.image
-          }" alt="place">
-          <h5 class="card-title placeName font-weight-bold">${place.name}</h5>
-           <p class="placeDescription card-text">${place.description.substring(
+          <img class='toyImg card-img-top mb-3' src="${
+            toy.image
+          }" alt="toy">
+          <h5 class="card-title toyName font-weight-bold">${toy.name}</h5>
+           <p class="toyDescription card-text">${toy.description.substring(
              0,
              100
            ) + " . . ."}</p>
-           <a class="text-info" href="placeDetail/${place._id}">See More</a>
+           <a class="text-info" href="toyDetail/${toy._id}">See More</a>
       </div>
     </div>
     </div>`;
   }
 }
 
-getPlaces();
+gettoys();

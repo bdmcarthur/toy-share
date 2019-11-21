@@ -3,16 +3,16 @@
 const { Router } = require("express");
 const router = Router();
 
-const Places = require("../models/places");
+const toys = require("../models/toys");
 const uploadCloud = require("../configurations/cloudinary.js");
 const routeGuardMiddleware = require("../controllers/route-guard-middleware");
 
-router.get("/places", (req, res, next) => {
-  Places.find({}, (error, places) => {
+router.get("/toys", (req, res, next) => {
+  toys.find({}, (error, toys) => {
     if (error) {
       next(error);
     } else {
-      res.status(200).json({ places: places });
+      res.status(200).json({ toys: toys });
     }
   });
 });
@@ -22,13 +22,13 @@ router.get("/add", routeGuardMiddleware, (req, res, next) => {
   res.render("add");
 });
 
-router.post("/addPlace", uploadCloud.single("file"), (req, res, next) => {
+router.post("/addtoy", uploadCloud.single("file"), (req, res, next) => {
   let name = req.body.name;
   let location = req.body.location;
   let category = req.body.category;
   let description = req.body.description;
   let image = req.file.url;
-  Places.create({
+  toys.create({
     name: name,
     time: today.getHours() + ":" + today.getMinutes(),
     addedBy: req.user.email,
@@ -37,9 +37,9 @@ router.post("/addPlace", uploadCloud.single("file"), (req, res, next) => {
     description: description,
     image: req.file.url
   })
-    .then(place => {
+    .then(toy => {
       res.redirect("/home");
-      console.log("The place is saved and its value is: ", place);
+      console.log("The toy is saved and its value is: ", toy);
     })
     .catch(err => {
       console.log("An error happened:", err);
@@ -47,9 +47,9 @@ router.post("/addPlace", uploadCloud.single("file"), (req, res, next) => {
 });
 
 router.get("/edit/:id", routeGuardMiddleware, (req, res, next) => {
-  Places.findOne({ _id: req.params.id })
-    .then(place => {
-      res.render("edit", { place });
+  toys.findOne({ _id: req.params.id })
+    .then(toy => {
+      res.render("edit", { toy });
     })
     .catch(error => {
       console.log(error);
@@ -60,11 +60,11 @@ router.post("/edit/:id", routeGuardMiddleware, (req, res, next) => {
   const name = req.body.name;
   const category = req.body.category;
   const description = req.body.description;
-  Places.update(
+  toys.update(
     { _id: req.params.id },
     { $set: { name, category, description } }
   )
-    .then(place => {
+    .then(toy => {
       res.redirect("/profile/" + req.user._id);
     })
     .catch(error => {
@@ -73,8 +73,8 @@ router.post("/edit/:id", routeGuardMiddleware, (req, res, next) => {
 });
 
 router.get("/delete/:id", routeGuardMiddleware, (req, res, next) => {
-  Places.deleteOne({ _id: req.params.id })
-    .then(place => {
+  toys.deleteOne({ _id: req.params.id })
+    .then(toy => {
       res.redirect("/profile/" + req.user._id);
     })
     .catch(error => {
@@ -82,11 +82,11 @@ router.get("/delete/:id", routeGuardMiddleware, (req, res, next) => {
     });
 });
 
-router.get("/placeDetail/:id", (req, res, next) => {
+router.get("/toyDetail/:id", (req, res, next) => {
   const id = req.params.id;
-  Places.findById(id)
-    .then(place => {
-      res.render("place-detail", { place });
+  toys.findById(id)
+    .then(toy => {
+      res.render("toy-detail", { toy });
     })
     .catch(error => {
       console.log(error);
@@ -99,11 +99,11 @@ router.post("/add-comment/:id", routeGuardMiddleware, (req, res, next) => {
     title: req.body.title,
     comment: req.body.comment
   };
-  Places.findByIdAndUpdate(id, {
+  toys.findByIdAndUpdate(id, {
     $push: { reviews: newReview }
   })
-    .then(place => {
-      res.redirect("/placeDetail/" + place._id);
+    .then(toy => {
+      res.redirect("/toyDetail/" + toy._id);
     })
     .catch(error => {
       console.log(error);

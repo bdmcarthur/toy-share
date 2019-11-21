@@ -3,17 +3,17 @@
 const { Router } = require('express');
 const router = Router();
 
-const Places = require('../models/places');
+const toys = require('../models/toys');
 const User = require('../models/user');
 
 router.get('/profile/:id', (req, res, next) => {
   const favoritesList = req.user._favorites
   Promise.all([
   User.findById(req.user._id).populate("_favorites"),
-  Places.find({ addedBy: req.user.email})])
-  .then(([user, places]) => {
+  toys.find({ addedBy: req.user.email})])
+  .then(([user, toys]) => {
     const data = {
-      places: places,
+      toys: toys,
       favorites: user._favorites
     }
     res.render('profile', data);
