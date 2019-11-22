@@ -13,6 +13,9 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true
   },
+  name: {
+    type: String
+  },
   _favorites: [
     {
       type: Object,
@@ -27,11 +30,15 @@ const signUpStatic = require("./user-signup");
 userSchema.statics.signIn = signInStatic;
 userSchema.statics.signUp = signUpStatic;
 
-userSchema.statics.findByEmail = function(email) {
+userSchema.statics.findByEmail = function(email, name) {
   const Model = this;
   return Model.findOne({ email })
     .then(user => {
-      return Promise.resolve(user);
+      const data = {
+        user: user,
+        name: name
+      };
+      return Promise.resolve(data);
     })
     .catch(error => {
       return Promise.reject(error);

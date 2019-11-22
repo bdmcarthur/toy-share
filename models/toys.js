@@ -15,8 +15,7 @@ const ToysSchema = new mongoose.Schema({
     type: String
   },
   location: {
-    type: String,
-    required: true
+    type: String
   },
   description: {
     type: String,

@@ -90,7 +90,6 @@ passport.use(
     (email, password, callback) => {
       User.signIn(email, password)
         .then(user => {
-          console.log(user);
           callback(null, user);
         })
         .catch(error => {
@@ -103,10 +102,11 @@ passport.use(
 passport.use(
   "signup",
   new PassportLocalStrategy(
-    { usernameField: "email" },
-    (email, password, callback) => {
-      User.signUp(email, password)
+    { usernameField: "email", passReqToCallback: true },
+    (req, email, password, callback) => {
+      User.signUp(email, password, req.body.name, callback)
         .then(user => {
+          // console.log(req.body);
           callback(null, user);
         })
         .catch(error => {
