@@ -18,6 +18,11 @@ router.get("/toys", (req, res, next) => {
 });
 let today = new Date();
 
+router.get("/toys/:term", (req, res, next) => {
+  let term = req.params;
+  console.log(term);
+});
+
 router.get("/add", routeGuardMiddleware, (req, res, next) => {
   res.render("add");
 });

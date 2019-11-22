@@ -3,9 +3,7 @@ let filter = document.getElementsByClassName("filter-btn");
 let currentToys = [];
 let markerPointers = [];
 
-window.onload = function() {
-  getToys();
-};
+window.onload = getToys;
 
 let map = tt.map({
   key: "8vFjEVbQhOi9xCGGWGnn7zIAjhYX2VPH",
@@ -15,6 +13,7 @@ let map = tt.map({
   zoom: 10
 });
 map.addControl(new tt.NavigationControl());
+
 //////////////////////////////////Gets Info from front end and database//////////////////
 
 //Add Event Listener To Filter Buttons
@@ -42,14 +41,14 @@ function getToys() {
         for (let toy of toysArr) {
           currentToys.push(toy);
         }
-        getPoints();
       } else {
         clearMarkers();
         toysArr.filter(toy => {
           if (checkedFilterBtns.includes(toy.category)) currentToys.push(toy);
         });
-        getPoints();
       }
+      getPoints();
+      displaytoys();
     })
     .catch(error => {
       console.log(error);
@@ -71,3 +70,42 @@ function clearMarkers() {
     mark.remove();
   });
 }
+
+function displaytoys() {
+  let container = document.querySelector(".card-row");
+  container.innerHTML = "";
+  for (let toy of currentToys) {
+    container.innerHTML += `
+      <div class="col-sm-4 my-4">
+        <div class="card h-100 toy-info shadow-lg">
+          <div class="card-body">
+            <img class='toyImg card-img-top mb-3' src="${toy.image}" alt="toy">
+            <h5 class="card-title font-weight-bold">${toy.name}</h5>
+             <p class="toyDescription card-text">${toy.description.substring(
+               0,
+               100
+             ) + " . . ."}</p>
+             <a class="text-info" href="toyDetail/${toy._id}">See More</a>
+        </div>
+      </div>
+      </div>`;
+  }
+}
+
+// Location Search Option
+// let searchBtn = document.getElementById("search-btn");
+// searchBtn.addEventListener("click", event => {
+//   let address = document.getElementById("address-search");
+//   let searchQuery = address.value;
+
+//   axios
+//     .get(
+//       `https://api.tomtom.com/search/2/geocode/${searchQuery}.json?countrySet=US&lat=-73.932789&lon=40.695839&key=8vFjEVbQhOi9xCGGWGnn7zIAjhYX2VPH`
+//     )
+//     .then(res => {
+//       map.jumpTo({ center: res.data.results[0].position, zoom: 14 });
+//     })
+//     .catch(error => {
+//       console.log(error);
+//     });
+// });
