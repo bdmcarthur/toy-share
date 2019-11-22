@@ -1,47 +1,54 @@
-// const locationsAvailable = document.getElementById('locationList');
-
-let markers = [];
-let mapMarker = [];
-
-let mapContainer = document.getElementById("map");
-let container = document.querySelector(".row");
-let filter = document.getElementsByClassName("filter-btn");
 let checkedFilterBtns = [];
+let filter = document.getElementsByClassName("filter-btn");
+let currentToys = [];
+let markerPointers = [];
 
-//Add Event Listener
+window.onload = function() {
+  getToys();
+};
+
+let map = tt.map({
+  key: "8vFjEVbQhOi9xCGGWGnn7zIAjhYX2VPH",
+  container: "map",
+  style: "tomtom://vector/1/basic-main",
+  center: [-73.932789, 40.695839],
+  zoom: 10
+});
+map.addControl(new tt.NavigationControl());
+//////////////////////////////////Gets Info from front end and database//////////////////
+
+//Add Event Listener To Filter Buttons
 for (let i = 0; i < filter.length; i++) {
   filter[i].addEventListener("click", event => {
     let result = filter[i].name;
-
     if (checkedFilterBtns.includes(result)) {
       let index = checkedFilterBtns.indexOf(result);
       checkedFilterBtns.splice(index, 1);
     } else {
       checkedFilterBtns.push(result);
     }
-    clearMarkers();
-    markers = [];
-    mapMarker = [];
-    gettoys();
+    getToys();
   });
 }
 
-// Gets Markers from Database
-function gettoys() {
+// Gets Points from Database
+function getToys() {
+  currentToys = [];
   axios
     .get("/toys")
     .then(res => {
       let toysArr = res.data.toys;
       if (checkedFilterBtns.length === 0) {
         for (let toy of toysArr) {
-          markers.push(toy);
+          currentToys.push(toy);
         }
-        toytoys(markers);
+        getPoints();
       } else {
+        clearMarkers();
         toysArr.filter(toy => {
-          if (checkedFilterBtns.includes(toy.category)) markers.push(toy);
+          if (checkedFilterBtns.includes(toy.category)) currentToys.push(toy);
         });
-        toytoys();
+        getPoints();
       }
     })
     .catch(error => {
@@ -49,63 +56,18 @@ function gettoys() {
     });
 }
 
-let map;
-function init() {
-  map = new google.maps.Map(mapContainer, {
-    center: { lat: 40.695839, lng: -73.932789 },
-    zoom: 13,
-    mapTypeControl: false,
-    streetViewControl: false,
-    fullScreenControl: false,
-    styles: mapStyles
+function getPoints() {
+  currentToys.map(toy => {
+    var marker = new tt.Marker()
+      .setLngLat({ lng: parseFloat(toy.lat), lat: parseFloat(toy.lng) })
+      .addTo(map);
+    marker.setPopup(new tt.Popup().setHTML(toy.name));
+    markerPointers.push(marker);
   });
 }
 
 function clearMarkers() {
-  setMapOnAll(null);
-}
-
-function setMapOnAll(map) {
-  for (var i = 0; i < mapMarker.length; i++) {
-    mapMarker[i].setMap(map);
-  }
-}
-
-function toytoys() {
-  markers.forEach(function(toy) {
-    const splitLoc = toy.location.split(",");
-    const center = {
-      lat: parseFloat(splitLoc[0]),
-      lng: parseFloat(splitLoc[1])
-    };
-    const marker = new google.maps.Marker({
-      position: center,
-      map: map,
-      label: { text: toy.name, color: "white" }
-    });
-    mapMarker.push(marker);
+  markerPointers.map(mark => {
+    mark.remove();
   });
-  displaytoys();
 }
-
-function displaytoys() {
-  container.innerHTML = "";
-  for (let toy of markers) {
-    container.innerHTML += `
-    <div class="col-sm-4 my-4">
-      <div class="card h-100 toy-info shadow-lg">
-        <div class="card-body">
-          <img class='toyImg card-img-top mb-3' src="${toy.image}" alt="toy">
-          <h5 class="card-title font-weight-bold">${toy.name}</h5>
-           <p class="toyDescription card-text">${toy.description.substring(
-             0,
-             100
-           ) + " . . ."}</p>
-           <a class="text-info" href="toyDetail/${toy._id}">See More</a>
-      </div>
-    </div>
-    </div>`;
-  }
-}
-
-gettoys();
