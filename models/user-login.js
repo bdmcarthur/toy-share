@@ -13,19 +13,20 @@ module.exports = function(email, password) {
       if (!user) {
         throw new Error("USER_NOT_FOUND");
       } else {
-        auxiliaryUser = user;
-        return bcrypt.compare(password, user.passwordHash);
+        auxiliaryUser = user.user;
+        return bcrypt.compare(password, user.user.passwordHash);
       }
     })
     .then(matches => {
       if (!matches) {
         throw new Error("PASSWORD_DOESNT_MATCH");
       } else {
+        console.log("Or Here?");
         return Promise.resolve(auxiliaryUser);
       }
     })
     .catch(error => {
-      console.log("There was an error signing up the user", error);
+      console.log("There was an error logging in the user", error);
       return Promise.reject(error);
     });
 };

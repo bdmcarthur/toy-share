@@ -32,7 +32,7 @@ router.post("/addtoy", uploadCloud.single("file"), (req, res, next) => {
     .create({
       name: name,
       time: today.getHours() + ":" + today.getMinutes(),
-      addedBy: req.user.email,
+      _addedBy: req.user._id,
       location: location,
       category: category,
       description: description,
@@ -85,35 +85,18 @@ router.get("/delete/:id", routeGuardMiddleware, (req, res, next) => {
 
 router.get("/toyDetail/:id", (req, res, next) => {
   const id = req.params.id;
-  // console.log(toy.reviews[2]._postedBy);
   toys
     .findById(id)
+    .populate("_addedBy")
     .populate({
       path: "reviews._postedBy"
     })
     .then(toy => {
-      console.log(toy);
-      console.log(toy.reviews[0]);
       res.render("toy-detail", { toy });
     })
     .catch(error => {
       console.log(error);
     });
-
-  // Promise.all([
-  //   User.findById(req.user._id).populate("_favorites"),
-  //   toys.find({ addedBy: req.user.email })
-  // ])
-  //   .then(([user, toys]) => {
-  //     const data = {
-  //       toys: toys,
-  //       favorites: user._favorites
-  //     };
-  //     res.render("profile", data);
-  //   })
-  //   .catch(error => {
-  //     console.log("Got an error updating", error);
-  //   });
 });
 
 router.post("/add-comment/:id", routeGuardMiddleware, (req, res, next) => {

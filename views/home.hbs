@@ -1,15 +1,26 @@
-<h1 class="title-text text-center text-white mt-5">Toys</h1>
+<h1 class="title-text text-center text-dark mt-3">TOYS</h1>
 <div class='mt-5 text-center'>
-  <div class="btn-group" role="group" aria-label="Basic example">
-    <button type="button" name="1" class="btn btn-primary filter-btn">0-1</button>
+  {{!-- <div class="btn-group" role="group" aria-label="Basic example"> --}}
+    {{!-- <button type="button" name="1" class="btn btn-primary filter-btn">0-1</button>
     <button type="button" name="2" class="btn btn-primary filter-btn">2-3</button>
     <button type="button" name="3" class="btn btn-primary filter-btn">4-6</button>
     <button type="button" name="4" class="btn btn-primary filter-btn">6-8</button>
-    <button type="button" name="5" class="btn btn-primary filter-btn">8+</button>
-  </div>
+    <button type="button" name="5" class="btn btn-primary filter-btn">8+</button> --}}
+
+    <input class='filter-btn' id='check-1' type="checkbox" name='0-1'/>
+    <label for="check-1">0-1</label>
+    <input class='filter-btn' id='check-2' type="checkbox" name='2-3'/>
+    <label for="check-2">2-3</label>
+    <input class='filter-btn' id='check-3' type="checkbox" name='4-6'/>
+    <label for="check-3">4-6</label>
+    <input class='filter-btn' id='check-4' type="checkbox" name='6-8'/>
+    <label for="check-4">6-8</label>
+    <input class='filter-btn' id='check-5' type="checkbox" name='8+'/>
+    <label for="check-5">8+</label>
+  {{!-- </div> --}}
 </div>
 
-<div class="my-5" id="map"></div>
+<div class="my-5 mx-auto" id="map"></div>
   <button class='btn btn-primary my-4 text-white d-block mx-auto myButton' type="button"><a href="/add" class="text-white h5"> Add New toy</a></button>
   
   <div class="row justify-content-around">

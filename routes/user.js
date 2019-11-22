@@ -10,7 +10,7 @@ router.get("/profile/:id", (req, res, next) => {
   const favoritesList = req.user._favorites;
   Promise.all([
     User.findById(req.user._id).populate("_favorites"),
-    toys.find({ addedBy: req.user.email })
+    toys.find({ _addedBy: req.user })
   ])
     .then(([user, toys]) => {
       const data = {

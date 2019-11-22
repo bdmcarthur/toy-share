@@ -6,39 +6,40 @@ let mapMarker = [];
 let mapContainer = document.getElementById("map");
 let container = document.querySelector(".row");
 let filter = document.getElementsByClassName("filter-btn");
+let checkedFilterBtns = [];
 
 //Add Event Listener
 for (let i = 0; i < filter.length; i++) {
   filter[i].addEventListener("click", event => {
-    console.log(filter[i].name);
     let result = filter[i].name;
+
+    if (checkedFilterBtns.includes(result)) {
+      let index = checkedFilterBtns.indexOf(result);
+      checkedFilterBtns.splice(index, 1);
+    } else {
+      checkedFilterBtns.push(result);
+    }
     clearMarkers();
     markers = [];
     mapMarker = [];
-    gettoys(result);
+    gettoys();
   });
 }
 
 // Gets Markers from Database
-function gettoys(result) {
+function gettoys() {
   axios
     .get("/toys")
     .then(res => {
       let toysArr = res.data.toys;
-      if (!result) {
+      if (checkedFilterBtns.length === 0) {
         for (let toy of toysArr) {
           markers.push(toy);
         }
         toytoys(markers);
       } else {
         toysArr.filter(toy => {
-          if (
-            toy.category
-              .toLowerCase()
-              .split(" ")
-              .join("") === result
-          )
-            markers.push(toy);
+          if (checkedFilterBtns.includes(toy.category)) markers.push(toy);
         });
         toytoys();
       }
@@ -80,12 +81,7 @@ function toytoys() {
     const marker = new google.maps.Marker({
       position: center,
       map: map,
-      label: { text: toy.name, color: "white" },
-      icon: {
-        scaledSize: new google.maps.Size(30, 50),
-        labelOrigin: new google.maps.Point(16, 55),
-        url: "/images/icon.png"
-      }
+      label: { text: toy.name, color: "white" }
     });
     mapMarker.push(marker);
   });
@@ -99,10 +95,8 @@ function displaytoys() {
     <div class="col-sm-4 my-4">
       <div class="card h-100 toy-info shadow-lg">
         <div class="card-body">
-          <img class='toyImg card-img-top mb-3' src="${
-            toy.image
-          }" alt="toy">
-          <h5 class="card-title toyName font-weight-bold">${toy.name}</h5>
+          <img class='toyImg card-img-top mb-3' src="${toy.image}" alt="toy">
+          <h5 class="card-title font-weight-bold">${toy.name}</h5>
            <p class="toyDescription card-text">${toy.description.substring(
              0,
              100

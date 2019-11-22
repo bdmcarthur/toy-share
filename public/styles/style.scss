@@ -1,6 +1,6 @@
 $font-sans: "Cormorant Garamond", serif;
-$primary: #e9e500;
-$secondary: #00e3eb;
+$primary: #fffb00;
+$secondary: #ff0000;
 $border-radius: 1.5rem;
 $font-size-base: 1.5rem;
 $light: white;
@@ -8,26 +8,38 @@ $light: white;
 
 body {
   margin: 0;
-  font-family: "Poppins", sans-serif;
+  font-family: "Quicksand", sans-serif;
   height: 100vh;
+  // background-color: #6bd5e9;
+  // background-image: linear-gradient(
+  //   225deg,
+  //   #6bd5e9 0%,
+  //   #b5fffc 50%,
+  //   #80e9f7 100%
+  // );
 }
-
-// a {
-//   font-family: "Cormorant Garamond", serif;
-// }
 
 h1,
 .navbar {
-  font-family: "Luckiest Guy", cursive;
+  font-family: "Patrick Hand SC", cursive;
 }
 
-.logo {
-  width: 10px;
+.navbar .text-white {
+  text-shadow: 2px 2px 2px #32426e;
+}
+
+.logout {
+  font-size: 2.25rem;
+  line-height: 1.2;
+}
+
+.main-title-text {
+  font-size: 11rem;
+  text-shadow: 10px 1px 0px #ff003e;
 }
 
 .title-text {
-  font-size: 11rem;
-  text-shadow: 7px 0px 15px #0176c0, 0 0 1em #ede1e1, 0 0 0.2em #00c4ff;
+  font-size: 8rem;
 }
 
 .sub-text {
@@ -58,30 +70,11 @@ h1,
   top: 1px;
 }
 
-.toyImgPro {
-  width: 30%;
-}
-
-.title-home {
-  padding-top: 20px;
-}
-
-.navbar .text-white {
-  text-shadow: 2px 2px 2px #32426e;
-}
-
 #map {
-  margin: 0;
   width: 60vw;
   height: 500px;
   overflow: hidden;
-  margin: 0 auto;
-}
-.filter-btn {
-  margin: 0 auto;
-}
-.background-img {
-  width: 100vh;
+  // margin: 0 auto;
 }
 
 .favButton {
@@ -92,79 +85,27 @@ h1,
   border: none;
 }
 
-.toyName {
-  clear: both;
-}
+// a {
+//   color: inherit;
+//   text-decoration: none;
+// }
 
-#map {
-  margin: 0;
-  width: 60vw;
-  height: 500px;
-  overflow: hidden;
-  margin: 0 auto;
-}
+// .a:hover {
+//   text-decoration: none;
+// }
 
-.toyName {
-  clear: both;
-}
-
-.titleInput {
-  height: 40px;
-  border-radius: 1rem;
-}
-
-//I think these are media queries
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
-.a:hover {
-  text-decoration: none;
-}
-
-.mytoys {
-  width: 250px;
-  padding-top: 30px;
-}
-
-.mytoys {
-  width: 250px;
-  padding-top: 30px;
-}
-
-.secrettoy {
-  width: 400px;
-}
-
-.mytoys {
-  width: 250px;
-  padding-top: 30px;
-}
-
-.myfavourite {
-  width: 300px;
-  padding-top: 30px;
-}
-
-.secrettoy {
-  width: 400px;
-}
-
-.hidden {
-  display: none;
-}
 @media (min-width: 320px) and (max-width: 768px) {
   body {
     font-size: 1.3rem;
   }
 
   #map {
-    margin: 0;
     width: 80vw;
     height: 40vh;
-    overflow: hidden;
-    margin: 0 auto;
+  }
+
+  .main-title-text {
+    font-size: 6rem;
   }
 
   .title-text {

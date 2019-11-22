@@ -25,10 +25,7 @@ const ToysSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-  addedBy: {
-    type: String,
-    required: true
-  },
+  _addedBy: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
   reviews: [
     {
       email: String,

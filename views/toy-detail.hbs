@@ -3,7 +3,7 @@
     <button class="favButton" type='submit'><i class="fas fa-heart"></i></button>
   </form>
   
-  <h1 class='mb-4 text-center toyName font-weight-bold'>{{toy.name}}</h1>
+  <h1 class='mb-4 text-center font-weight-bold'>{{toy.name}}</h1>
   <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
   <div class="carousel-inner">
     <div class="carousel-item active">
@@ -21,7 +21,8 @@
 </div>
 
   <div class='container px-5'>
-    <p class="description my-2 pb-3 text-center">{{toy.description}}</p>
+    <p class="my-2 pb-3 text-center">{{toy.description}}</p>
+    <p class="my-2 pb-3 text-center">Added By: {{toy._addedBy.name}}</p>
   </div>
 </div>
 <p class=" my-4 font-weight-bold border-secondary ">Comments</p>
@@ -39,11 +40,11 @@
   <p class="mb-3 font-weight-bold">Add A Comment</p>
 <form action="/add-comment/{{toy._id}}" method="post">
    <div class="form-group">
-    <label class="" for="title">Title:</label>
+    <label for="title">Title:</label>
     <input type="text" class="form-control" name="title" id="description">
   </div>
  <div class="form-group">
-    <label class="" for="comment">Comment:</label>
+    <label for="comment">Comment:</label>
     <textarea class="form-control" name="comment" id="comment" rows="3"></textarea>
   </div>
   <div class="form-group form-check">
