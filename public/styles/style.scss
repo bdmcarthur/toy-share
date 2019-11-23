@@ -3,25 +3,18 @@ $primary: #fffb00;
 $secondary: #ff0000;
 $border-radius: 1.5rem;
 $font-size-base: 1.5rem;
-$light: white;
+$light: #ffffffb0;
 @import "../../node_modules/bootstrap/scss/bootstrap.scss";
 
 body {
   margin: 0;
   font-family: "Quicksand", sans-serif;
   height: 100vh;
-  // background-color: #6bd5e9;
-  // background-image: linear-gradient(
-  //   225deg,
-  //   #6bd5e9 0%,
-  //   #b5fffc 50%,
-  //   #80e9f7 100%
-  // );
 }
 
 h1,
 .navbar {
-  font-family: "Patrick Hand SC", cursive;
+  font-family: "Patrick Hand SC";
 }
 
 .navbar .text-white {
@@ -34,8 +27,9 @@ h1,
 }
 
 .main-title-text {
-  font-size: 11rem;
-  text-shadow: 10px 1px 0px #ff003e;
+  font-size: 16rem;
+  color: black;
+  // text-shadow: 10px 1px 0px #ff003e;
 }
 
 .title-text {
@@ -43,24 +37,25 @@ h1,
 }
 
 .sub-text {
-  text-shadow: 7px 0px 15px #0061eb, 0 0 1em #4fc5ff, 0 0 0.2em #056ff1;
+  // text-shadow: 10px 1px 0px #ff003e;
+  font-weight: 700;
+  font-size: 2.5rem;
 }
 
 .myButton {
   box-shadow: 0px 0px 7px 1px #d7d0d0;
-  background: linear-gradient(to bottom, #c80404 5%, #db2f40 100%);
-  background-color: #ed0808;
+  background: linear-gradient(to bottom, #fbff00 5%, #e6e93d 100%);
+  background-color: #d0df05;
   border-radius: 26px;
-  border: 1px solid #6e686e;
+  border: none;
   display: inline-block;
   cursor: pointer;
   color: #ffffff;
   padding: 7px 25px;
   text-decoration: none;
-  text-shadow: 0px 1px 14px #525252;
 }
 .myButton:hover {
-  background: linear-gradient(to bottom, #a30202 5%, #a01d2a 100%);
+  background: linear-gradient(to bottom, #ceba03 5%, #c9c505 100%);
   background-color: #696369;
   color: white;
   text-decoration: none;

@@ -1,7 +1,5 @@
 <div class="bg-light mx-auto rounded pb-4">
-  <form action="/addFavorite/{{toy._id}}" method="POST">
-    <button class="favButton" type='submit'><i class="fas fa-heart"></i></button>
-  </form>
+ 
   
   <h1 class='mb-4 text-center font-weight-bold'>{{toy.name}}</h1>
   <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
@@ -20,34 +18,37 @@
   </a>
 </div>
 
-  <div class='container px-5'>
+  <div class='container px-5 text-center'>
     <p class="my-2 pb-3 text-center">{{toy.description}}</p>
     <p class="my-2 pb-3 text-center">Added By: {{toy._addedBy.name}}</p>
+    <form action="/addFavorite/{{toy._id}}" method="POST">
+        <button class="btn btn-sm btn-secondary rounded-pill mx-5 my-4" type='submit'>Save</button>
+      </form>
+  </div>
+  
+  <div class='mx-auto text-center'> 
+    <h1>Contact</h1>
+      
+    <form action="/contact" id="contact-form" method="post" role="form">
+   <div class="form-group">
+    <label for="exampleInputPassword1">Name</label>
+    <input  id="name" 
+      name="name" 
+      type="text" 
+      placeholder="Your name"  class="form-control" id="exampleInputPassword1">
+  </div>
+
+  <div class="form-group">
+    <label for="exampleInputEmail1">Email address</label>
+    <input name="email" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Your email">
+  </div>
+
+ <div class="form-group">
+    <label for="exampleFormControlTextarea1">Message</label>
+    <textarea name="message" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+  </div>
+  <button type="submit" class="btn myButton btn-primary mx-5">Submit</button>
+</form>
   </div>
 </div>
-<p class=" my-4 font-weight-bold border-secondary ">Comments</p>
-{{#each toy.reviews}}
-  <div class="card my-3">
-    <div class="card-body">
-      <h5 class="card-title">{{this.title}}</h5>
-      <p class="card-text">{{this.comment}}</p>
-      <p>{{this._postedBy.name}}</p>
-    </div>
-  </div>
-{{/each}}
 
-<div class="my-3 pt-3 border-secondary border-top">
-  <p class="mb-3 font-weight-bold">Add A Comment</p>
-<form action="/add-comment/{{toy._id}}" method="post">
-   <div class="form-group">
-    <label for="title">Title:</label>
-    <input type="text" class="form-control" name="title" id="description">
-  </div>
- <div class="form-group">
-    <label for="comment">Comment:</label>
-    <textarea class="form-control" name="comment" id="comment" rows="3"></textarea>
-  </div>
-  <div class="form-group form-check">
-  </div>
-  <button type="submit" class="btn myButton btn-primary">Submit</button>
-</form>

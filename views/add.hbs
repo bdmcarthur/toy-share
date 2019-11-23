@@ -1,15 +1,10 @@
  <h1 class="mt-3 text-dark title-text text-center">Add a Toy!</h1>
  
-<button type="button" class="myButton" id='locationButton'>Get Current Location <span class="spinner-border spinner-border-sm hidden" id="loading" role="status" aria-hidden="true"></span></button>
-
 <form method="POST" action="/addtoy" enctype="multipart/form-data">
-   <div class="form-group location-hide">
-    <label class="hidden" for="location">Location:</label>
-    <input id="location-input" class="form-control hidden" type="text" name="location" toyholder="Location">
-    </div>
+  
     <div class="form-group">
     <select class="form-control" id="category" name="category">
-      <option value="">Choose an Age Range:</option>
+      <option value="">Age Range:</option>
         <option value="0-1">0-1</option>
         <option value="2-3">2-3</option>
         <option value="4-6">4-6</option>
@@ -18,9 +13,13 @@
     </select>
   </div>
   <div class="form-group">
-    <label for="name">Name</label>
+    <label for="name">Title</label>
     <input type="text" class="form-control" id="exampleFormControlInput1" name="name" toyholder="toy Name">
   </div>
+   <div class="form-group">
+    <label class="hidden" for="location">Your Zipcode</label>
+    <input id="location-input" class="form-control hidden" type="text" name="location" placeholderholder="Location">
+    </div>
   <div class="form-group">
     <label for="description">Description:</label>
     <textarea class="form-control" id="description"  name="description" rows="3"></textarea>

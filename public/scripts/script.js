@@ -8,7 +8,7 @@ window.onload = getToys;
 let map = tt.map({
   key: "8vFjEVbQhOi9xCGGWGnn7zIAjhYX2VPH",
   container: "map",
-  style: "tomtom://vector/1/basic-main",
+  style: "tomtom://vector/1/basic-light",
   center: [-73.932789, 40.695839],
   zoom: 10
 });
@@ -57,11 +57,26 @@ function getToys() {
 
 function getPoints() {
   currentToys.map(toy => {
-    var marker = new tt.Marker()
-      .setLngLat({ lng: parseFloat(toy.lat), lat: parseFloat(toy.lng) })
-      .addTo(map);
-    marker.setPopup(new tt.Popup().setHTML(toy.name));
-    markerPointers.push(marker);
+    let latlng = null;
+    axios
+      .get(
+        `https://api.tomtom.com/search/2/geocode/${toy.location}.json?countrySet=US&lat=-73.932789&lon=40.695839&key=8vFjEVbQhOi9xCGGWGnn7zIAjhYX2VPH`
+      )
+      .then(res => {
+        latlng = res.data.results[0].position;
+        console.log(latlng);
+        var marker = new tt.Marker()
+          .setLngLat({
+            lng: parseFloat(latlng.lon),
+            lat: parseFloat(latlng.lat)
+          })
+          .addTo(map);
+        marker.setPopup(new tt.Popup().setHTML(toy.name));
+        markerPointers.push(marker);
+      })
+      .catch(error => {
+        console.log(error);
+      });
   });
 }
 
