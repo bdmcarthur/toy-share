@@ -124,7 +124,11 @@ function getPoints(arr) {
             lat: parseFloat(latlng.lat)
           })
           .addTo(map);
-        marker.setPopup(new tt.Popup().setHTML(toy.name));
+        marker.setPopup(
+          new tt.Popup()
+            .setHTML(`<p class="m-0 p-0 font-weight-bold">${toy.name}</p>
+        <a class="text-secondary" href="toyDetail/${toy._id}">See More</a>`)
+        );
         markerPointers.push(marker);
       })
       .catch(error => {
