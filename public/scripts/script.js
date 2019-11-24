@@ -10,7 +10,7 @@ let map = tt.map({
   container: "map",
   style: "tomtom://vector/1/basic-light",
   center: [-73.932789, 40.695839],
-  zoom: 10
+  zoom: 12
 });
 map.addControl(new tt.NavigationControl());
 
