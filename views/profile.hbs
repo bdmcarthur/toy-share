@@ -2,9 +2,10 @@
 
 <h1 class="text-secondary text-center">My Toys</h1>
 
-<div class="row my-3">
+<div class="row my-3 justify-content-center">
+    {{#if toys}} 
         {{#each toys}}
-         <div class="col-sm-4 my-4">
+        <div class="col-sm-4 my-4">
             <div class="card h-100 my-3">
                 <div class="card-body">
                     <a href='/toyDetail/{{this._id}}'><img class="card-img-top mb-3" src="{{this.image}}" alt=""></a>
@@ -16,27 +17,36 @@
                     </div>
                 </div>
             </div>
-          </div>
+        </div>
         {{/each}}
+    {{else}}
+        <div class="text-center">
+            <h4 class="d-block text-center">Donate Some Toys!</h4>
+            <button class='btn btn-primary my-4 text-white d-block mx-auto myButton' type="button"><a href="/add" class="text-white h5"> Add New toy</a></button>
+        </div>
+    {{/if}}    
 </div>
 
-<div class='col-12 my-3'>
-<button class="myButton btn my-3 d-block mx-auto py-2" ><a class="text-white" href='/add'>Add New toy</a></button>
-</div>
-
-<h1 class="text-secondary text-center mx-auto d-block mt-5">My Favorites</h1>
-<div class="row my-3">
-    {{#each favorites}}
-        <div class="col-sm-4 my-4">
-            <div class="card h-100 my-3">
-                <div class="card-body">
-                    <a href='/toyDetail/{{this._id}}'><img class="card-img-top mb-3" src="{{this.image}}" alt=""></a>
-                    <h5 class="card-title font-weight-bold">{{this.name}}</h5>
-                    <p class="card-text">{{this.description}}</p>
+<h1 class="text-secondary text-center mx-auto d-block mt-5">My Saved Toys</h1>
+<div class="row my-3 justify-content-center">
+    {{#if favorites}}
+        {{#each favorites}}
+            <div class="col-sm-4 my-4">
+                <div class="card h-100 my-3">
+                    <div class="card-body">
+                        <a href='/toyDetail/{{this._id}}'><img class="card-img-top mb-3" src="{{this.image}}" alt=""></a>
+                        <h5 class="card-title font-weight-bold">{{this.name}}</h5>
+                        <p class="card-text">{{this.description}}</p>
+                    </div>
                 </div>
             </div>
+        {{/each}}
+    {{else}}
+        <div class="text-center">
+            <h4 class="d-block text-center">Save some toys!</h4>
+            <button class='btn btn-primary my-4 text-white d-block mx-auto myButton' type="button"><a href="/home" class="text-white h5"> Check out Toys!</a></button>
         </div>
-    {{/each}}
+    {{/if}}
 </div>
 
 

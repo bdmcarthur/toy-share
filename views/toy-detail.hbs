@@ -19,6 +19,7 @@
 </div>
 
   <div class='container px-5 text-center'>
+    <p class="my-2 pb-3 text-center">{{toy.category}} years</p>
     <p class="my-2 pb-3 text-center">{{toy.description}}</p>
     <p class="my-2 pb-3 text-center">Added By: {{toy._addedBy.name}}</p>
     <form action="/addFavorite/{{toy._id}}" method="POST">

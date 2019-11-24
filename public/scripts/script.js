@@ -1,6 +1,10 @@
 let checkedFilterBtns = [];
 let filter = document.getElementsByClassName("filter-btn");
-let currentToys = [];
+let searchBtn = document.getElementById("search-btn");
+let toySearchTerm = document.getElementById("toy-search");
+let locationTerm = document.getElementById("location-search");
+let allToys = [];
+let currentToys;
 let markerPointers = [];
 
 window.onload = getToys;
@@ -16,6 +20,13 @@ map.addControl(new tt.NavigationControl());
 
 //////////////////////////////////Gets Info from front end and database//////////////////
 
+searchBtn.addEventListener("click", event => {
+  if (locationTerm.value) {
+    locationSearch();
+  }
+  toySearch();
+});
+
 //Add Event Listener To Filter Buttons
 for (let i = 0; i < filter.length; i++) {
   filter[i].addEventListener("click", event => {
@@ -26,37 +37,80 @@ for (let i = 0; i < filter.length; i++) {
     } else {
       checkedFilterBtns.push(result);
     }
-    getToys();
+    toySearch();
   });
 }
 
 // Gets Points from Database
 function getToys() {
-  currentToys = [];
+  allToys = [];
   axios
     .get("/toys")
     .then(res => {
       let toysArr = res.data.toys;
-      if (checkedFilterBtns.length === 0) {
-        for (let toy of toysArr) {
-          currentToys.push(toy);
-        }
-      } else {
-        clearMarkers();
-        toysArr.filter(toy => {
-          if (checkedFilterBtns.includes(toy.category)) currentToys.push(toy);
-        });
+      for (let toy of toysArr) {
+        allToys.push(toy);
       }
-      getPoints();
-      displaytoys();
+      getPoints(allToys);
+      displaytoys(allToys);
     })
     .catch(error => {
       console.log(error);
     });
 }
 
-function getPoints() {
-  currentToys.map(toy => {
+function toySearch() {
+  let arr = [...allToys];
+  let final;
+  let searchTerm;
+  let filterBox;
+
+  if (toySearchTerm.value) {
+    searchTerm = arr.filter(toy => {
+      if (
+        toy.name.toLowerCase().includes(toySearchTerm.value.toLowerCase()) ||
+        toy.description
+          .toLowerCase()
+          .includes(toySearchTerm.value.toLowerCase())
+      ) {
+        return toy;
+      }
+    });
+  }
+
+  if (checkedFilterBtns.length > 0) {
+    filterBox = arr.filter(toy => {
+      if (checkedFilterBtns.includes(toy.category)) {
+        return toy;
+      }
+    });
+  }
+  if (searchTerm && filterBox) {
+    let ages = [];
+    filterBox.map(toy => {
+      ages.push(toy.category);
+    });
+
+    final = searchTerm.filter(item => {
+      if (ages.includes(item.category)) {
+        return item;
+      }
+    });
+  } else if (searchTerm) {
+    final = searchTerm;
+  } else if (filterBox) {
+    final = filterBox;
+  } else {
+    final = allToys;
+  }
+
+  clearMarkers();
+  getPoints(final);
+  displaytoys(final);
+}
+
+function getPoints(arr) {
+  arr.map(toy => {
     let latlng = null;
     axios
       .get(
@@ -64,7 +118,6 @@ function getPoints() {
       )
       .then(res => {
         latlng = res.data.results[0].position;
-        console.log(latlng);
         var marker = new tt.Marker()
           .setLngLat({
             lng: parseFloat(latlng.lon),
@@ -86,10 +139,10 @@ function clearMarkers() {
   });
 }
 
-function displaytoys() {
+function displaytoys(arr) {
   let container = document.querySelector(".card-row");
   container.innerHTML = "";
-  for (let toy of currentToys) {
+  for (let toy of arr) {
     container.innerHTML += `
       <div class="col-sm-4 my-4">
         <div class="card h-100 toy-info shadow-lg">
@@ -108,19 +161,15 @@ function displaytoys() {
 }
 
 // Location Search Option
-// let searchBtn = document.getElementById("search-btn");
-// searchBtn.addEventListener("click", event => {
-//   let address = document.getElementById("address-search");
-//   let searchQuery = address.value;
-
-//   axios
-//     .get(
-//       `https://api.tomtom.com/search/2/geocode/${searchQuery}.json?countrySet=US&lat=-73.932789&lon=40.695839&key=8vFjEVbQhOi9xCGGWGnn7zIAjhYX2VPH`
-//     )
-//     .then(res => {
-//       map.jumpTo({ center: res.data.results[0].position, zoom: 14 });
-//     })
-//     .catch(error => {
-//       console.log(error);
-//     });
-// });
+function locationSearch() {
+  axios
+    .get(
+      `https://api.tomtom.com/search/2/geocode/${locationTerm.value}.json?countrySet=US&lat=-73.932789&lon=40.695839&key=8vFjEVbQhOi9xCGGWGnn7zIAjhYX2VPH`
+    )
+    .then(res => {
+      map.jumpTo({ center: res.data.results[0].position, zoom: 14 });
+    })
+    .catch(error => {
+      console.log(error);
+    });
+}
