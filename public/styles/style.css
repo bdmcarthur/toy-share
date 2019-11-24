@@ -7027,7 +7027,7 @@ body {
 
 h1,
 .navbar {
-  font-family: "Patrick Hand SC"; }
+  font-family: "Lilita One", cursive; }
 
 .navbar .text-white {
   text-shadow: 2px 2px 2px #32426e; }
@@ -7037,7 +7037,7 @@ h1,
   line-height: 1.2; }
 
 .main-title-text {
-  font-size: 16rem;
+  font-size: 12rem;
   color: black; }
 
 .title-text {
@@ -7045,24 +7045,26 @@ h1,
 
 .sub-text {
   font-weight: 700;
-  font-size: 2.5rem; }
+  font-size: 3rem;
+  font-family: "Lilita One", cursive;
+  color: black; }
 
 .myButton {
   box-shadow: 0px 0px 7px 1px #d7d0d0;
-  background: linear-gradient(to bottom, #fbff00 5%, #e6e93d 100%);
-  background-color: #d0df05;
+  background: linear-gradient(to bottom, #f30d0d 5%, #e9513d 100%);
+  background-color: #f81b13;
   border-radius: 26px;
-  border: 1px solid #6e686e;
+  border: none;
   display: inline-block;
   cursor: pointer;
   color: #ffffff;
   padding: 7px 25px;
   text-decoration: none;
-  text-shadow: 0px 1px 14px #525252; }
+  font-weight: 700; }
 
 .myButton:hover {
-  background: linear-gradient(to bottom, #ceba03 5%, #c9c505 100%);
-  background-color: #696369;
+  background: linear-gradient(to bottom, #ad0404 5%, #ad0202 100%);
+  background-color: #aa0606;
   color: white;
   text-decoration: none; }
 
@@ -7082,6 +7084,9 @@ h1,
   background-color: Transparent;
   border: none; }
 
+a:hover {
+  text-decoration: none; }
+
 @media (min-width: 320px) and (max-width: 768px) {
   body {
     font-size: 1.3rem; }
@@ -7089,7 +7094,7 @@ h1,
     width: 80vw;
     height: 40vh; }
   .main-title-text {
-    font-size: 6rem; }
+    font-size: 7rem; }
   .title-text {
     font-size: 6rem; }
   .sub-text {
