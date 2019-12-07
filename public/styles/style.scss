@@ -3,7 +3,7 @@ $primary: #fffb00;
 $secondary: #656565;
 $danger: #41fff1;
 $border-radius: 1.5rem;
-$font-size-base: 1.5rem;
+// $font-size-base: 1.5rem;
 $light: #ffffffb0;
 @import "../../node_modules/bootstrap/scss/bootstrap.scss";
 
@@ -18,13 +18,13 @@ h1,
   font-family: "Lilita One", cursive;
 }
 
-.navbar .text-white {
-  text-shadow: 2px 2px 2px #32426e;
-}
+// .navbar .text-white {
+//   text-shadow: 2px 2px 2px #32426e;
+// }
 
-.navbar-brand {
-  text-shadow: 2px 2px 2px white;
-}
+// .navbar-brand {
+//   text-shadow: 2px 2px 2px white;
+// }
 
 .logout {
   font-size: 1.875rem;
@@ -42,7 +42,7 @@ h1,
 
 .sub-text {
   font-weight: 700;
-  font-size: 3rem;
+  font-size: 2rem;
   color: #4e4c4c;
 }
 
@@ -76,6 +76,14 @@ h1,
   overflow: hidden;
 }
 
+#contact-form div {
+  width: 60%;
+}
+
+#toy-image {
+  width: 50%;
+}
+
 .favButton {
   padding: 30px 30px 0px 30px;
   float: right;
@@ -92,13 +100,17 @@ a:hover {
     font-size: 1.3rem;
   }
 
+  #contact-form div {
+    width: 100%;
+  }
+
   #map {
     width: 80vw;
     height: 40vh;
   }
 
   .main-title-text {
-    font-size: 7rem;
+    font-size: 5rem;
   }
 
   .title-text {
@@ -106,6 +118,18 @@ a:hover {
   }
 
   .sub-text {
-    font-size: 1.75rem;
+    font-size: 1.25rem;
+  }
+
+  .nav-item {
+    padding-top: 17px;
+  }
+
+  #toy-image {
+    width: 80%;
+  }
+
+  .toy-detail {
+    padding: 0;
   }
 }
