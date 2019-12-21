@@ -1,37 +1,38 @@
+ <body style="background: rgb(255,211,211); background: linear-gradient(45deg, rgba(255,211,211,1) 25%, rgba(255,194,194,1) 48%);"></body>
  <h1 class="mt-3 text-dark title-text text-center">Add a Toy!</h1>
- 
-<form method="POST" action="/addtoy" enctype="multipart/form-data">
-  
-    <div class="form-group">
-    <select class="form-control" id="category" name="category">
-      <option value="">Age Range:</option>
-        <option value="0-1">0-1</option>
-        <option value="2-3">2-3</option>
-        <option value="4-6">4-6</option>
-        <option value="6-8">6-8</option>
-        <option value="8+">8+</option>
-    </select>
-  </div>
-  <div class="form-group">
-    <label for="name">Title</label>
-    <input type="text" class="form-control" id="exampleFormControlInput1" name="name" placeholder="Toy Name">
-  </div>
-   <div class="form-group">
-    <label class="hidden" for="location">Your Location</label>
-    <input id="location-input" class="form-control hidden" type="text" name="location" placeholder="Enter and address, zipcode, or city">
-    </div>
-  <div class="form-group">
-    <label for="description">Description:</label>
-    <textarea class="form-control" id="description"  name="description" rows="3"></textarea>
-  </div>
-   <div class="form-group">
-    <input type="file" name="file">
-  </div>
-  <div class="form-group">
-    <button class="myButton">Submit</button>
-  </div>
-</form>
 
-  <script src="scripts/add.js"></script>
+<div class="container bg-light p-4 mb-4">
+  <form method="POST" action="/addtoy" enctype="multipart/form-data">
+      <div class="form-group">
+      <select class="form-control" id="category" name="category">
+        <option value="">Age Range:</option>
+          <option value="0-1">0-1</option>
+          <option value="2-3">2-3</option>
+          <option value="4-6">4-6</option>
+          <option value="6-8">6-8</option>
+          <option value="8+">8+</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="name">Title</label>
+      <input type="text" class="form-control" id="exampleFormControlInput1" name="name" placeholder="Toy Name">
+    </div>
+    <div class="form-group">
+      <label class="hidden" for="location">Your Location</label>
+      <input id="location-input" class="form-control hidden" type="text" name="location" placeholder="Enter and address, zipcode, or city">
+      </div>
+    <div class="form-group">
+      <label for="description">Description:</label>
+      <textarea class="form-control" id="description"  name="description" rows="3"></textarea>
+    </div>
+    <div class="form-group">
+      <input type="file" name="file">
+    </div>
+    <div class="form-group m-0">
+      <button class="myButton">Submit</button>
+    </div>
+  </form>
+</div>
+
 
  

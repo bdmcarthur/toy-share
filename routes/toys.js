@@ -88,7 +88,7 @@ router.get("/delete/:id", routeGuardMiddleware, (req, res, next) => {
     });
 });
 
-router.get("/toyDetail/:id", (req, res, next) => {
+router.get("/toy/:id", (req, res, next) => {
   const id = req.params.id;
   toys
     .findById(id)
@@ -117,7 +117,7 @@ router.post("/add-comment/:id", routeGuardMiddleware, (req, res, next) => {
       $push: { reviews: newReview }
     })
     .then(toy => {
-      res.redirect("/toyDetail/" + toy._id);
+      res.redirect("/toy/" + toy._id);
     })
     .catch(error => {
       console.log(error);

@@ -12,9 +12,9 @@ window.onload = getToys;
 let map = tt.map({
   key: "8vFjEVbQhOi9xCGGWGnn7zIAjhYX2VPH",
   container: "map",
-  style: "tomtom://vector/1/basic-light",
+  style: "tomtom://vector/1/basic-main",
   center: [-73.932789, 40.695839],
-  zoom: 12
+  zoom: 11
 });
 map.addControl(new tt.NavigationControl());
 
@@ -127,7 +127,7 @@ function getPoints(arr) {
         marker.setPopup(
           new tt.Popup()
             .setHTML(`<p class="m-0 p-0 font-weight-bold">${toy.name}</p>
-        <a class="text-secondary" href="toyDetail/${toy._id}">See More</a>`)
+        <a class="text-secondary" href="toy/${toy._id}">See More</a>`)
         );
         markerPointers.push(marker);
       })
@@ -157,7 +157,7 @@ function displaytoys(arr) {
                0,
                100
              ) + " . . ."}</p>
-             <a class="text-info" href="toyDetail/${toy._id}">See More</a>
+             <a class="text-info" href="toy/${toy._id}">See More</a>
         </div>
       </div>
       </div>`;
