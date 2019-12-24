@@ -14,6 +14,7 @@ router.get("/profile/:id", (req, res, next) => {
   ])
     .then(([user, toys]) => {
       const data = {
+        user: req.user,
         toys: toys,
         favorites: user._favorites
       };

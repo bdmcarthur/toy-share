@@ -1,7 +1,8 @@
 $font-sans: "Cormorant Garamond", serif;
 $primary: #fffb00;
 $secondary: #656565;
-$danger: #41fff1;
+$danger: #026e07;
+$dark: #000000;
 $border-radius: 1.5rem;
 // $font-size-base: 1.5rem;
 $light: #ffffffb0;
@@ -15,7 +16,11 @@ body {
 
 h1,
 .navbar {
-  font-family: "Lilita One", cursive;
+  font-family: "Josefin Sans", sans-serif;
+}
+
+.navbar {
+  background-color: black;
 }
 
 // .navbar .text-white {
@@ -27,10 +32,11 @@ h1,
 // }
 
 .logout {
-  font-size: 1.25rem;
-  line-height: 1.5;
   padding: 0;
-  margin: 0;
+}
+
+.log-form {
+  width: 50%;
 }
 
 .main-title-text {
@@ -39,7 +45,7 @@ h1,
 }
 
 .title-text {
-  font-size: 8rem;
+  font-size: 5rem;
 }
 
 .sub-text {
@@ -49,7 +55,7 @@ h1,
 }
 
 .myButton {
-  box-shadow: 0px 0px 7px 1px #d7d0d0;
+  // box-shadow: 0px 0px 7px 1px #d7d0d0;
   background: linear-gradient(to bottom, #0dd8f3 5%, #02e3eb 100%);
   background-color: #52ccf1;
   border-radius: 26px;
@@ -74,7 +80,7 @@ h1,
 
 #map {
   width: 60vw;
-  height: 500px;
+  height: 400px;
   overflow: hidden;
 }
 
@@ -98,11 +104,10 @@ a:hover {
   text-decoration: none;
 }
 @media (min-width: 320px) and (max-width: 768px) {
-  body {
-    font-size: 1.3rem;
-  }
-
   #contact-form div {
+    width: 100%;
+  }
+  .log-form {
     width: 100%;
   }
 
@@ -116,7 +121,7 @@ a:hover {
   }
 
   .title-text {
-    font-size: 6rem;
+    font-size: 1.5rem;
   }
 
   .sub-text {
@@ -133,5 +138,8 @@ a:hover {
 
   .toy-detail {
     padding: 0;
+  }
+  .search-btn {
+    display: none;
   }
 }

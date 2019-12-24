@@ -7,41 +7,36 @@
     <title>{{title}}</title>
     <link rel="stylesheet" href="/styles/style.css">
     <script src="https://kit.fontawesome.com/13283239b5.js" crossorigin="anonymous"></script>
-    <link href="https://fonts.googleapis.com/css?family=Dekko|Just+Another+Hand|Short+Stack|Sue+Ellen+Francisco&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Lilita+One|Love+Ya+Like+A+Sister|Quicksand:400,700|Titan+One&display=swap" rel="stylesheet"><link href="https://fonts.googleapis.com/css?family=Jua|Kosugi+Maru|Neucha|Patrick+Hand+SC|Quicksand:400,700&display=swap" rel="stylesheet"><link href="https://fonts.googleapis.com/css?family=Luckiest+Guy|Poppins&display=swap" rel="stylesheet"><link href="https://fonts.googleapis.com/css?family=Advent+Pro:400,700|Amatic+SC:700&display=swap" rel="stylesheet">  <link href="https://fonts.googleapis.com/css?family=Advent+Pro:400,700&display=swap|Amatic+SC:700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Alata|Josefin+Sans|Quicksand&display=swap" rel="stylesheet">
   </head>
 
   <body>
-      <nav class="navbar navbar-expand-lg navbar-light bg-primary font-weight-bold"> 
+      <nav class="navbar navbar-expand-lg navbar-dark">
+        <a class="navbar-brand ml-3" href="/home"><i class="fas fa-shapes text-success"></i>  Toys</a>  
           <button class="navbar-toggler border-0" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon text-white"></span>
-          </button>  
-      <div class="collapse navbar-collapse justify-content-center pt-2" id="navbarNav">  
-        <ul class="navbar-nav pb-1">
-          <li class="nav-item mr-5 pr-5 pt-1">
-              <a class="h5 py-0 nav-link text-dark" href="/home">Toys!</a>
-           </li>
-           <li class="nav-item mr-5 pr-5 pt-1">
-              <a class="h5 py-0 nav-link text-dark" href="/add">Add a Toy</a>
-           </li>
+          </button>
+          
+      <div class="collapse navbar-collapse justify-content-end" id="navbarNav">  
+        <ul class="navbar-nav pt-1">
            {{#if user}}
-           <li class="nav-item mr-5 pr-5 pt-1">
-              <a class="h5 py-0 nav-link text-dark" href="/profile/{{user._id}}">Profile</a>
+           <li class="nav-item pr-3">
+              <a class="py-0 nav-link text-white" href="/add">Add a Toy</a>
            </li>
-
-           <li class="nav-item mr-5 pr-5">
+           <li class="nav-item pr-3">
+              <a class="py-0 nav-link text-white" href="/profile/{{user._id}}">Profile</a>
+           </li>
+           <li class="nav-item pr-3">
               <form method="POST" action="/logout">
-              <button class="logout h5 btn text-dark nav-link">Logout</button>
+              <button class="logout btn text-white nav-link">Logout</button>
             </form>
-           </li>
-
-            
+           </li>    
           {{else}}
-          <li class="nav-item mr-5 pr-5 pt-1">
-            <a class="h5 py-0 nav-link text-dark" href="/signup">Sign Up</a>
+          <li class="nav-item pr-3">
+            <a class="py-0 nav-link text-white" href="/signup">Sign Up</a>
           </li>
-          <li class="nav-item mr-5 pr-5 pt-1">
-            <a class="h5 py-0 nav-link text-dark" href="/login">Login</a>
+          <li class="nav-item pr-3">
+            <a class="py-0 nav-link text-white" href="/login">Login</a>
           </li>
           {{/if}}
         </ul>
