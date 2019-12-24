@@ -27,6 +27,18 @@ searchBtn.addEventListener("click", event => {
   toySearch();
 });
 
+toySearchTerm.addEventListener("keyup", event => {
+  if (event.keyCode === 13) {
+    toySearch();
+  }
+});
+
+locationTerm.addEventListener("keyup", event => {
+  if (event.keyCode === 13) {
+    locationSearch();
+  }
+});
+
 //Add Event Listener To Filter Buttons
 for (let i = 0; i < filter.length; i++) {
   filter[i].addEventListener("click", event => {
